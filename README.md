@@ -253,7 +253,61 @@ sudo ufw disable
 bash <(wget -qO- https://raw.githubusercontent.com/fscarmen/sing-box/main/sing-box.sh)     #sb一键脚本
 ```
 
-     
+
+
+# 安装x-ui-yg面板
+
+
+## 关闭防火墙
+
+
+```shell
+ufw disable
+```
+
+
+## 更新系统
+
+
+```shell
+apt update -y     #更新系统
+```
+
+
+```shell
+bash <(wget -qO- https://raw.githubusercontent.com/yonggekkk/x-ui-yg/main/install.sh)      #安装x-ui-yg面板
+```
+
+
+
+# Hysteria 2 一键脚本部署
+
+
+## 关闭防火墙
+
+
+```shell
+ufw disable
+```
+
+
+## 更新系统
+
+
+```shell
+apt update -y     #更新系统
+```
+
+
+## hysteria2 纯净版一键脚本
+
+
+```shell
+wget -N --no-check-certificate https://raw.githubusercontent.com/flame1ce/hysteria2-install/main/hysteria2-install-main/hy2/hysteria.sh && bash hysteria.sh      #hysteria2 纯净版一键
+```
+
+
+
 # 安装x-ui面板
 
 
