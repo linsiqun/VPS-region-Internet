@@ -56,7 +56,7 @@ ufw allow 80   #非常重要
 
 
 
-## 一键申请SSL证书：【https://github.com/slobys/docker】
+## 一键申请SSL证书：【https://github.com/slobys/SSL-Renewal】
 
 ### 证书以下命令
 
