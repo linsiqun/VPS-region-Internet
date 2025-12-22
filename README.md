@@ -56,7 +56,7 @@ ufw allow 80   #非常重要
 
 
 
-## 一键申请SSL证书：【https://github.com/slobys/SSL-Renewal】
+## 一键申请SSL证书：https://github.com/slobys/SSL-Renewal
 
 ### 证书以下命令
 
@@ -66,9 +66,9 @@ ufw allow 80   #非常重要
 ```
 
 
-开源项目Nodepass：【https://github.com/yosebyte/nodepass】
+开源项目Nodepass：https://github.com/yosebyte/nodepass
 
-Nodepass面板项目：【https://github.com/NodePassProject/npsh】
+Nodepass面板项目：https://github.com/NodePassProject/npsh
 
 
 ## 主程序安装  【中转机、落地机搭建】
