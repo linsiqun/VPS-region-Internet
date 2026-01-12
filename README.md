@@ -1,4 +1,11 @@
+最低配置服务器:1核,1G,10TB Debian 系统
+
+首先,更新 Debian/Ubuntu 系统并安装组件。
+
+
+
 # 放行端口
+
 
 ```shell
 ufw allow 80   #非常重要
@@ -8,18 +15,36 @@ ufw allow 80   #非常重要
  ufw allow 443   #非常重要
 ```
 
-# 中转一键搭建脚本
 
-## 更新-以下命令
+# 中转一键脚本部署
+
+
+### 关闭防火墙
+
+
+```shell
+ufw disable     #关闭防火墙
+```
+
+
+### 更新-以下命令
 
 
 ```shell
  apt update -y && apt install curl sudo wget git -y    #Debian/Ubuntu系统 
 ```
 
+
+### 中转机、落地机一键脚本
+
+
 ```shell
- wget -N --no-check-certificate https://github.com/ginuerzh/gost/releases/downloadv2.11.0gost-linux-amd64-2.11.0.gz && gzip-d gost-linux-amd64-2.11.0.gz     #一键键搭脚本
+ wget -N --no-check-certificate https://github.com/ginuerzh/gost/releases/downloadv2.11.0gost-linux-amd64-2.11.0.gz && gzip-d gost-linux-amd64-2.11.0.gz     #中转落地搭建脚本
 ```
+
+
+### 一键安装脚本
+
 
 ```shell
  wget --no-check-certificate -O gost.sh https://raw.githubusercontent.com/KANIKIG/Multi-EasyGost/master/gost.sh && chmod +x gost.sh && ./gost.sh     #中转一键安装脚本
@@ -28,13 +53,12 @@ ufw allow 80   #非常重要
    
 路由器客户端替换中转机IP地址及端口
 
-
 ./gost -L udp://:38420 -L tcp://:38420 -F relay+tls://落地:33280 >> /dev/null 2>\&1 \&     #中转服务器代码
 
 ./gost -L relay+tls://:8888/要把落地机的域名添加上:443 >> /dev/null 2>\&1 \&      #落地服务器代码
 
 
-# 管理脚本命令
+## 管理脚本命令
 
 
 ```shell
@@ -42,21 +66,38 @@ ufw allow 80   #非常重要
 ```
 
 
-# 中转nodepass安装脚本面板2025
+
+# 中转nodepass面板搭建2026
 
 
-## 准备工作
+### 准备工作
 
 
 准备两台VPS，一台用来做中转机、一台用来做落地机
 
-提前在落地机部署对应的节点--提前在落地机中部署了3X-UI面板
+提前在落地机搭建对应的节点--提前在落地机中搭建了3X-UI面板
 
 提前做好中转机和落地架的域名解析
 
 
+### 关闭防火墙
 
-## 一键申请SSL证书：https://github.com/slobys/SSL-Renewal
+
+```shell
+ufw disable     #关闭防火墙
+```
+
+
+### 更新系统
+
+
+```shell
+apt update -y     #更新系统
+```
+
+
+#### 一键申请SSL证书：https://github.com/slobys/SSL-Renewal
+
 
 ### 证书以下命令
 
@@ -71,13 +112,15 @@ ufw allow 80   #非常重要
 Nodepass面板项目：https://github.com/NodePassProject/npsh
 
 
-## 主程序安装  【中转机、落地机搭建】
+### 主程序安装  【中转机、落地机】
+
 
 ```shell
  bash <(wget -qO- https://run.nodepass.eu/np.sh)     #主程序命令
 ```
 
-## 或
+
+### 或
 
 
 ```shell
@@ -85,7 +128,7 @@ Nodepass面板项目：https://github.com/NodePassProject/npsh
 ```
 
 
-## 部署Nodepass面板【中转机搭建】
+### Nodepass面板【中转机搭建】
 
 
 
@@ -94,7 +137,7 @@ Nodepass面板项目：https://github.com/NodePassProject/npsh
 ```
 
 
-## 或
+### 或
 
 
 ```shell
@@ -102,9 +145,10 @@ Nodepass面板项目：https://github.com/NodePassProject/npsh
 ```
 
 
-## 一键安装脚本【落地机搭建选择】
+### 一键安装【落地机选择】
 
-### 3X-UI一键安装面板
+
+#### 3X-UI一键安装面板
 
 
 ```shell
@@ -112,11 +156,11 @@ bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.
 ```
 
 
-### Sing-Box一键脚本
+#### Sing-Box一键安装面板
 
 
 ```shell
-bash <(wget -qO- https://raw.githubusercontent.com/fscarmen/sing-box/main/sing-box.sh)     #Sing-Box一键脚本
+bash <(curl -Ls https://raw.githubusercontent.com/alireza0/s-ui/master/install.sh)     #一键安装Sing-Box和Xray面板
 ```
 
 
@@ -139,16 +183,35 @@ bash <(curl -sSL https://run.nodepass.eu/dash.sh) resetpwd     #重置密码
 ```
 
 
-# 中转一键安装极光面板
+
+# 中转极光面板搭建
 
    
-## 关闭防火墙
+### 关闭防火墙
+
+
 ```shell
 ufw disable     #关闭防火墙
 ```
 
 
-## 安装极光面板
+### 更新系统
+
+
+```shell
+apt update -y     #更新系统
+```
+
+
+### 更新系统的根证书
+
+
+```shell
+apt-get install ca-certificates wget -y && update-ca-certificates     #更新系统的根证书
+```
+
+
+#### 安装极光面板
 
 
 ```shell
@@ -159,15 +222,24 @@ bash <(curl -fsSL https://raw.githubusercontent.com/Aurora-Admin-Panel/deploy/ma
 路由器客户端替换中转机IP地址及端口
 
 
-# 安装Trojan Panel面板
 
-## 更新
+# Trojan Panel面板搭建
+
+
+### 关闭防火墙
+
+
+```shell
+ufw disable     #关闭防火墙
+```
+
+
+### 更新系统
 
 
 ```shell
 apt update -y     #更新系统
 ```
-
 
 
 更新系统的根证书
@@ -178,10 +250,7 @@ apt-get install ca-certificates wget -y && update-ca-certificates     #更新系
 ```
 
 
-
-## 开启BBR加速
-
-
+### 开启BBR加速
 
 
 ```shell
@@ -189,8 +258,7 @@ wget -O tcp.sh "https://github.com/ylx2016/Linux-NetSpeed/raw/master/tcp.sh" && 
 ```
 
 
-## Trojan Panel联机（推荐）
-
+### Trojan Panel联机（推荐）
 
 
 ```shell
@@ -198,15 +266,12 @@ source <(curl -L https://github.com/trojanpanel/install-script/raw/main/install_
 ```
 
     
-
-## Trojan Panel单机
-
+### Trojan Panel单机
 
 
 ```shell
 source <(curl -L https://github.com/trojanpanel/install-script/raw/main/install_script_standalone.sh)     #单机Trojan Panel面板
 ```
-
 
 
      默认登录账号: sysadmin 默认登录密码: 123456
@@ -215,11 +280,24 @@ source <(curl -L https://github.com/trojanpanel/install-script/raw/main/install_
 
 
 
-#  一键安装Sing-Box面板
+#  Sing-Box和Xray面板搭建
 
 
-## 申请SSL证书
+### 关闭防火墙
 
+
+```shell
+ufw disable     #关闭防火墙
+```
+
+
+### 更新系统
+
+
+```shell
+apt update -y     #更新系统
+```
+### 申请SSL证书
 
 
 ```shell
@@ -227,7 +305,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/slobys/SSL-Renewal/main/acme
 ```
 
 
-## 一键安装Sing-Box和Xray面板
+### 一键安装Sing-Box和Xray面板
 
 
 ```shell
@@ -235,18 +313,27 @@ bash <(curl -Ls https://raw.githubusercontent.com/alireza0/s-ui/master/install.s
 ```
 
 
-# sb一键脚本部署
+
+# Sing-Box一键脚本部署
 
 
-## 关闭防火墙
+### 关闭防火墙
 
 
 ```shell
-sudo ufw disable
+ufw disable     #关闭防火墙
 ```
 
 
-## sb一键脚本
+### 更新系统
+
+
+```shell
+apt update -y     #更新系统
+```
+
+
+### sb一键脚本
 
 
 ```shell
@@ -255,23 +342,26 @@ bash <(wget -qO- https://raw.githubusercontent.com/fscarmen/sing-box/main/sing-b
 
 
 
-# 安装x-ui-yg面板
+# x-ui-yg面板搭建
 
 
-## 关闭防火墙
+### 关闭防火墙
 
 
 ```shell
-ufw disable
+ufw disable     #关闭防火墙
 ```
 
 
-## 更新系统
+### 更新系统
 
 
 ```shell
 apt update -y     #更新系统
 ```
+
+
+#### 安装x-ui-yg面板
 
 
 ```shell
@@ -283,15 +373,15 @@ bash <(wget -qO- https://raw.githubusercontent.com/yonggekkk/x-ui-yg/main/instal
 # Hysteria 2 一键脚本部署
 
 
-## 关闭防火墙
+### 关闭防火墙
 
 
 ```shell
-ufw disable
+ufw disable     #关闭防火墙
 ```
 
 
-## 更新系统
+### 更新系统
 
 
 ```shell
@@ -299,7 +389,7 @@ apt update -y     #更新系统
 ```
 
 
-## hysteria2 纯净版一键脚本
+### hysteria2 纯净版一键脚本
 
 
 ```shell
@@ -308,38 +398,54 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/flame1ce/hyster
 
 
 
-# 安装x-ui面板
+# x-ui面板搭建
 
 
-## 关闭防火墙
+### 关闭防火墙
 
 
 ```shell
-ufw disable
+ufw disable     #关闭防火墙
 ```
+
+
+### 更新系统
+
+
+```shell
+apt update -y     #更新系统
+```
+
+
+### 安装x-ui面板
 
 
 ```shell
 bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)     #安装x-ui面板
 ```
 
+
  
-# 安装x-ui面板
+# 3x-ui面板搭建
 
-服务器:1核,1G 4T Debian 系统
 
-首先,更新 Debian/Ubuntu 系统并安装组件。
-
+### 关闭防火墙
 
 
 ```shell
-apt update -y &&apt install curl sudo wget git -y     #更新
+ufw disable     #关闭防火墙
 ```
 
 
+### 更新系统
 
-## 一键安装面板
 
+```shell
+apt update -y &&apt install curl sudo wget git -y     #更新系统
+```
+
+
+### 一键安装3x-ui面板
 
 
 ```shell
@@ -360,3 +466,5 @@ bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.
 ③vless+ws+tls 443
 
 ④vless+tcp+tls 
+
+#### 服务器部署完成，BBR要启用。
