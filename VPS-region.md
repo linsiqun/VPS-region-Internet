@@ -12,7 +12,7 @@ ufw allow 80   #非常重要
 ```
 
 ```shell
- ufw allow 443   #非常重要
+ufw allow 443   #非常重要
 ```
 
 
@@ -107,9 +107,10 @@ apt update -y     #更新系统
 ```
 
 
-开源项目Nodepass：https://github.com/yosebyte/nodepass
+Nodepass项目：https://github.com/NodePassProject
 
 Nodepass面板项目：https://github.com/NodePassProject/npsh
+
 
 
 ### 主程序安装  【中转机、落地机】
@@ -389,12 +390,45 @@ apt update -y     #更新系统
 ```
 
 
-### hysteria2 纯净版一键脚本
+
+### hysteria2 执行安装依赖(请执一次依赖安装在进行安装脚本)
+
+
+```shell
+wget -O phy2.sh https://raw.githubusercontent.com/seagullz4/hysteria2/main/phy2.sh && chmod +x phy2.sh && bash phy2.sh    #hysteria2 安装依赖
+```
+
+
+
+### hysteria2 一键部署脚本
+
+
+```shell
+bash <(curl -Lso- https://raw.githubusercontent.com/GeorgianaBlake/Hysteria2/refs/heads/main/install.sh)    #hysteria2 一键脚本
+```
+
+
+
+### hysteria2 shell版一键脚本
 
 
 ```shell
 wget -N --no-check-certificate https://raw.githubusercontent.com/flame1ce/hysteria2-install/main/hysteria2-install-main/hy2/hysteria.sh && bash hysteria.sh      #hysteria2 纯净版一键
 ```
+
+
+
+### hysteria2 纯净版一键脚本
+
+
+```shell
+wget -O hy2.py https://raw.githubusercontent.com/seagullz4/hysteria2/main/hysteria2.py && chmod +x hy2.py && python3 hy2.py    #hysteria2 纯净版一键
+```
+
+
+项目hysteria2：https://github.com/seagullz4/hysteria2
+
+开源项目hysteria2：https://github.com/GeorgianaBlake/Hysteria2
 
 
 
